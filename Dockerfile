@@ -6,15 +6,16 @@ RUN apt update && \
 apt install exiftool g++ gcc coreutils ghostscript gnupg1 graphviz \
 libfuse2 libjpeg-dev libmagic1 libpq-dev libpng-dev libreoffice \
 libtiff-dev poppler-utils python3-dev python3-virtualenv \
- sane-utils supervisor tesseract-ocr zlib1g-dev python3.7 -y
+ sane-utils supervisor tesseract-ocr zlib1g-dev python3.7 python3.7-dev -y
 
 RUN mkdir -p /app/code
 
 RUN pip3 install setuptools wheel
 
-RUN pip3 install -U pip
 
 RUN virtualenv /opt/mayan-edms -p /usr/bin/python3.7
+
+RUN pip install -U pip
 
 RUN chown cloudron:cloudron /opt/mayan-edms -R
 
