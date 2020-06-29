@@ -1,0 +1,13 @@
+{
+  "id": "com.mayanedms.cloudron",
+  "version": "0.1.0",
+  "healthCheckPath": "/",
+  "httpPort": 3000,
+  "addons": {
+    "localstorage": {},
+    "sendmail": {},
+    "postgresql": {},
+    "redis": {}
+  },
+  "manifestVersion": 2
+}
