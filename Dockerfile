@@ -28,3 +28,5 @@ RUN export PATH=/usr/lib/postgresql/10/bin/:$PATH
 RUN sudo -u cloudron /opt/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1
 
 RUN chown cloudron:cloudron /app/code -R
+
+COPY start.sh /app/pkg/
