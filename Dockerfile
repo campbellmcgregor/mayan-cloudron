@@ -8,7 +8,7 @@ libfuse2 libjpeg-dev libmagic1 libpq-dev libpng-dev libreoffice \
 libtiff-dev poppler-utils python3-dev python3-virtualenv \
  sane-utils supervisor tesseract-ocr zlib1g-dev python3.7 python3.7-dev -y
 
-RUN mkdir -p /app/code
+RUN mkdir -p /app/code /app/data/media
 
 RUN pip3 install setuptools wheel
 
@@ -27,6 +27,8 @@ RUN export PATH=/usr/lib/postgresql/10/bin/:$PATH
 
 RUN sudo -u cloudron /opt/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1
 
-RUN chown cloudron:cloudron /app/code -R
+RUN chown cloudron:cloudron /app/code /app/data/ -R
 
 COPY start.sh /app/pkg/
+
+RUN chmod +x /app/pkg/start.sh
