@@ -32,3 +32,5 @@ RUN chown cloudron:cloudron /app/code /app/data/ -R
 COPY start.sh /app/pkg/
 
 RUN chmod +x /app/pkg/start.sh
+
+ENV MAYAN_DATABASE_ENGINE = django.db.backends.postgresql
