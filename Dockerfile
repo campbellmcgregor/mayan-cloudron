@@ -10,7 +10,7 @@ libfuse2 libjpeg-dev libmagic1 libpq-dev libpng-dev libreoffice \
 libtiff-dev poppler-utils python3-dev python3-virtualenv \
  sane-utils supervisor tesseract-ocr zlib1g-dev python3.7 python3.7-dev -y
 
-RUN mkdir -p /app/code /app/data/media
+RUN mkdir -p /app/code /app/data
 
 RUN pip3 install setuptools wheel && \
     virtualenv /opt/mayan-edms -p /usr/bin/python3.7 && \
