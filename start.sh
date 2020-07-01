@@ -12,7 +12,8 @@ export MAYAN_DATABASE_HOST=${CLOUDRON_POSTGRESQL_HOST}
 export MAYAN_DATABASE_PORT=${CLOUDRON_POSTGRESQL_PORT}
 
 #/opt/mayan-edms/bin/mayan-edms.py platformtemplate supervisord | sudo sh -c "cat > /etc/supervisor/conf.d/mayan.conf"
-export MAYAN_MEDIA_ROOT=/app/data/media \
+export MAYAN_MEDIA_ROOT=/app/data/media
+
 /opt/mayan-edms/bin/mayan-edms.py initialsetup
 
 apt remove -y --purge libjpeg-dev libpq-dev libpng-dev libtiff-dev zlib1g-dev
