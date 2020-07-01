@@ -1,8 +1,3 @@
-# MAYAN_DATABASES="{'default':{'ENGINE':'django.db.backends.postgresql',\
-# 'NAME':'${CLOUDRON_POSTGRESQL_DATABASE}',\
-# 'PASSWORD':'${CLOUDRON_POSTGRESQL_PASSWORD}',\
-# 'USER':'${CLOUDRON_POSTGRESQL_USERNAME}',\
-# 'HOST':'${CLOUDRON_POSTGRESQL_HOST}'"
 
 export MAYAN_DATABASE_ENGINE=django.db.backends.postgresql
 export MAYAN_DATABASE_NAME=${CLOUDRON_POSTGRESQL_DATABASE}
@@ -15,7 +10,12 @@ export MAYAN_CELERY_BROKER_URL="redis://:${CLOUDRON_REDIS_PASSWORD}@${CLOUDRON_R
 
 export MAYAN_MEDIA_ROOT=/app/data/media
 
-/opt/mayan-edms/bin/mayan-edms.py initialsetup
+if [ ! -e "init-completed" ]; then
+  ( sleep 20;
+  /opt/mayan-edms/bin/mayan-edms.py initialsetup;
+  touch init-completed)&
+fi
+
 
 chown cloudron:cloudron /app/data -R
 
