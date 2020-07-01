@@ -9,5 +9,6 @@
     "postgresql": {},
     "redis": {}
   },
+  "memoryLimit": 1073741824,
   "manifestVersion": 2
 }
