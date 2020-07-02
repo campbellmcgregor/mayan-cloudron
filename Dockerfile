@@ -37,4 +37,4 @@ WORKDIR /app/code
 
 RUN touch /app/data/startup_log
 
-CMD [ "/app/pkg/start.sh" ]
+CMD "sh" , "/app/pkg/start.sh" , "|" , "tee" , "/app/data/startup_log"
