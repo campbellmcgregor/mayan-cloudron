@@ -13,16 +13,16 @@ libtiff-dev poppler-utils python3-dev python3-virtualenv \
 RUN mkdir -p /app/code /app/data
 
 RUN pip3 install setuptools wheel && \
-    virtualenv /opt/mayan-edms -p /usr/bin/python3.7 && \
+    virtualenv /app/data/mayan-edms -p /usr/bin/python3.7 && \
     pip install -U pip
 
-RUN chown cloudron:cloudron /opt/mayan-edms -R
+RUN chown cloudron:cloudron /app/data -R
 
-RUN sudo -u cloudron /opt/mayan-edms/bin/pip install mayan-edms==${MAYAN_VERSION}
+RUN sudo -u cloudron /app/data/mayan-edms/bin/pip install mayan-edms==${MAYAN_VERSION}
 
-RUN PATH=/usr/lib/postgresql/10/bin/:$PATH
+ENV PATH=/usr/lib/postgresql/10/bin/:$PATH
 
-RUN sudo -u cloudron /opt/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1
+RUN sudo -u cloudron /app/data/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1
 
 RUN chown cloudron:cloudron /app/code /app/data -R
 
@@ -37,4 +37,4 @@ WORKDIR /app/code
 
 RUN touch /app/data/startup_log
 
-CMD "sh" , "/app/pkg/start.sh" , "|" , "tee" , "/app/data/startup_log"
+CMD [ "sh", "-c", "/app/pkg/start.sh", "|", "tee", "/app/data/startup_log" ]

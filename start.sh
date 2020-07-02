@@ -10,12 +10,12 @@ export MAYAN_CELERY_BROKER_URL="redis://:${CLOUDRON_REDIS_PASSWORD}@${CLOUDRON_R
 
 export MAYAN_MEDIA_ROOT=/app/data/media
 
-if [ ! -e "init-completed" ]; then
-  ( sleep 20;
-  /opt/mayan-edms/bin/mayan-edms.py initialsetup;
-  touch init-completed)&
-fi
 
+
+if [ ! -e "/app/data/init-completed" ]; then
+  (/opt/mayan-edms/bin/mayan-edms.py initialsetup;
+  touch /app/data/init-completed)&
+fi
 
 chown cloudron:cloudron /app/data -R
 
