@@ -13,7 +13,7 @@ export MAYAN_MEDIA_ROOT=/app/data/media
 
 
 if [ ! -e "/app/data/init-completed" ]; then
-  (/opt/mayan-edms/bin/mayan-edms.py initialsetup;
+  (/app/data/mayan-edms/bin/mayan-edms.py initialsetup;
   touch /app/data/init-completed)&
 fi
 

@@ -35,6 +35,6 @@ ENV MAYAN_DATABASE_ENGINE = django.db.backends.postgresql
 
 WORKDIR /app/code 
 
-RUN touch /app/data/startup_log
+#RUN touch /app/data/startup_log
 
-CMD [ "sh", "-c", "/app/pkg/start.sh", "|", "tee", "/app/data/startup_log" ]
+CMD [ "/app/pkg/start.sh ]
