@@ -1,6 +1,7 @@
 {
   "id": "com.mayanedms.cloudron",
-  "version": "0.2.0",
+  "title": "Mayan EDMS",
+  "version": "1.0.0",
   "healthCheckPath": "/",
   "httpPort": 8000,
   "addons": {
@@ -10,5 +11,9 @@
     "redis": {}
   },
   "memoryLimit": 1073741824,
+  "icon": "file://icon.png",
+  "postInstallMessage": "file://POSTINSTALL.md",
+  "description": "file://DESCRIPTION.md",
+  "changelog": "file://CHANGELOG",
   "manifestVersion": 2
 }
