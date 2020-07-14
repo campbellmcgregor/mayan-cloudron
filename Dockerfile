@@ -26,7 +26,7 @@ RUN sudo -u cloudron /run/venv/mayan-edms/bin/pip install psycopg2==2.8.4 redis=
 
 RUN chown cloudron:cloudron /app/code /app/data -R
 
-COPY start.sh init.sh /app/pkg/
+COPY start.sh /app/pkg/
 COPY mayan.conf /etc/supervisor/conf.d
 
 RUN chmod +x /app/pkg/start.sh /app/pkg/init.sh
@@ -35,10 +35,6 @@ RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/sup
 
 ENV MAYAN_DATABASE_ENGINE = django.db.backends.postgresql
 
-WORKDIR /app/code 
+WORKDIR /app/data
 
-#RUN touch /app/data/startup_log
-
-CMD [ "/app/pkg/init.sh" ] 
-
-# CMD [ "/app/pkg/start.sh" ]
+CMD [ "/app/pkg/start.sh" ]
