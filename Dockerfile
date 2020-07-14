@@ -27,9 +27,10 @@ RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install psycopg2==2.8.4 r
 RUN chown cloudron:cloudron /app/code /app/data -R
 
 COPY start.sh /app/pkg/
+COPY dump_env.sh /app/data
 COPY mayan.conf /etc/supervisor/conf.d
 
-RUN chmod +x /app/pkg/start.sh
+RUN chmod +x /app/pkg/start.sh /app/data/dump_env.sh
 
 RUN sed -e 's,^logfile=.*$,logfile=/app/data/supervisord.log,' -i /etc/supervisor/supervisord.conf
 
