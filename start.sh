@@ -15,10 +15,10 @@ export MAYAN_CELERY_BROKER_URL="redis://:${CLOUDRON_REDIS_PASSWORD}@${CLOUDRON_R
 export MAYAN_MEDIA_ROOT=/app/data/media
 
 
-if [ ! -e "/run/init-completed" ]; then
-  /app/data/mayan-edms/bin/mayan-edms.py initialsetup
-  apt remove -y --purge libjpeg-dev libpq-dev libpng-dev libtiff-dev zlib1g-dev
-  touch /run/init-completed
+if [ ! -e "/app/data/init-completed" ]; then
+  /app/data/venv/mayan-edms/bin/mayan-edms.py initialsetup
+  #apt remove -y --purge libjpeg-dev libpq-dev libpng-dev libtiff-dev zlib1g-dev
+  touch /app/data/init-completed
 fi
 
 chown cloudron:cloudron /app/data -R

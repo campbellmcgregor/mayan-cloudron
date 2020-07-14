@@ -13,25 +13,25 @@ libtiff-dev poppler-utils python3-dev python3-virtualenv \
 RUN mkdir -p /app/code /app/data
 
 RUN pip3 install setuptools wheel && \
-    virtualenv /run/venv/mayan-edms -p /usr/bin/python3.7 && \
+    virtualenv /app/data/venv/mayan-edms -p /usr/bin/python3.7 && \
     pip install -U pip
 
 RUN chown cloudron:cloudron /app/data -R
 
-RUN sudo -u cloudron /run/venv/mayan-edms/bin/pip install mayan-edms==${MAYAN_VERSION}
+RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install mayan-edms==${MAYAN_VERSION}
 
 ENV PATH=/usr/lib/postgresql/10/bin/:$PATH
 
-RUN sudo -u cloudron /run/venv/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1
+RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1
 
 RUN chown cloudron:cloudron /app/code /app/data -R
 
 COPY start.sh /app/pkg/
 COPY mayan.conf /etc/supervisor/conf.d
 
-RUN chmod +x /app/pkg/start.sh /app/pkg/init.sh
+RUN chmod +x /app/pkg/start.sh
 
-RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/supervisord.conf
+RUN sed -e 's,^logfile=.*$,logfile=/app/data/supervisord.log,' -i /etc/supervisor/supervisord.conf
 
 ENV MAYAN_DATABASE_ENGINE = django.db.backends.postgresql
 
