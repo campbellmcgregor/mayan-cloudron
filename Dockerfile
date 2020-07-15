@@ -22,7 +22,7 @@ RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install mayan-edms==${MAY
 
 ENV PATH=/usr/lib/postgresql/10/bin/:$PATH
 
-RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1
+RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1 django-storages boto3
 
 RUN chown cloudron:cloudron /app/code /app/data -R
 
