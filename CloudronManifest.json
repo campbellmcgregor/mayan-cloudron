@@ -1,7 +1,7 @@
 {
   "id": "com.mayanedms.cloudron",
   "title": "Mayan EDMS",
-  "version": "1.0.17",
+  "version": "1.0.2",
   "healthCheckPath": "/",
   "httpPort": 8000,
   "addons": {
