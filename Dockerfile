@@ -2,7 +2,7 @@ FROM cloudron/base:2.0.0@sha256:f9fea80513aa7c92fe2e7bf3978b54c8ac5222f47a9a32a7
 
 EXPOSE 8000
 
-ENV MAYAN_VERSION=3.4.10
+ENV MAYAN_VERSION=3.4.17
 
 RUN apt update && \ 
 apt install exiftool g++ gcc coreutils ghostscript gnupg1 graphviz \
@@ -23,6 +23,11 @@ RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install mayan-edms==${MAY
 ENV PATH=/usr/lib/postgresql/10/bin/:$PATH
 
 RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install psycopg2==2.8.4 redis==3.4.1
+
+# this corrects an error with the package not pinning to version 1.3.0 of vine.
+# v5.0.0 does not work which is the latest version
+RUN sudo -u cloudron /app/data/venv/mayan-edms/bin/pip install vine==1.3.0
+
 
 RUN chown cloudron:cloudron /app/code /app/data -R
 
