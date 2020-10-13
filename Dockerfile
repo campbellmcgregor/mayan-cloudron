@@ -2,7 +2,7 @@ FROM cloudron/base:2.0.0@sha256:f9fea80513aa7c92fe2e7bf3978b54c8ac5222f47a9a32a7
 
 EXPOSE 8000
 
-ENV MAYAN_VERSION=3.4.10
+ENV MAYAN_VERSION=3.5.1
 
 RUN apt update && \ 
 apt install exiftool g++ gcc coreutils ghostscript gnupg1 graphviz \

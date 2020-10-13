@@ -16,9 +16,10 @@ export MAYAN_EMAIL_PORT=${CLOUDRON_MAIL_SMTP_PORT}
 
 if [ ! -e "/app/data/init-completed" ]; then
   /app/data/venv/mayan-edms/bin/mayan-edms.py initialsetup
-  #apt remove -y --purge libjpeg-dev libpq-dev libpng-dev libtiff-dev zlib1g-dev
+  echo "Setting up for initial install, this may take some time"
   touch /app/data/init-completed
 fi
+
 
 chown cloudron:cloudron /app/data -R
 
