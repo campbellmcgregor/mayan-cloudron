@@ -14,14 +14,33 @@ export MAYAN_EMAIL_HOST_USER=${CLOUDRON_MAIL_SMTP_USERNAME}
 export MAYAN_EMAIL_PORT=${CLOUDRON_MAIL_SMTP_PORT}
 
 
-if [ ! -e "/app/data/init-completed" ]; then
-  /app/data/venv/mayan-edms/bin/mayan-edms.py initialsetup
-  echo "Setting up for initial install, this may take some time"
-  touch /app/data/init-completed
+# if [ ! -e "/app/data/init-completed" ]; then
+#   /app/data/venv/mayan-edms/bin/mayan-edms.py initialsetup
+#   echo "Setting up for initial install, this may take some time"
+#   touch /app/data/init-completed
+# fi
+
+echo "=> Setup mayanedms virtual env"
+source /app/code/venv/bin/activate
+
+cd /app/code/
+
+if [[ ! -d /app/data/media/ ]]; then
+
+    echo "=> Run first time setup "
+    python /app/code/venv/lib/python3.7/site-packages/mayan/bin/mayan-edms.py initialsetup
+
+else
+    echo "=> Run upgrade or standard cleanup"
+    python /app/code/venv/lib/python3.7/site-packages/mayan/bin/mayan-edms.py performupgrade
 fi
 
+echo "=> Make cloudron own /run"
+chown -R cloudron:cloudron /run
+chown -R cloudron:cloudron /app/data
+#chown -R cloudron:cloudron /app/code 
 
-chown cloudron:cloudron /app/data -R
 
 rm -rf /var/run/supervisor.sock
+rm -fr /tmp/*
 exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf --nodaemon -i mayanedms
