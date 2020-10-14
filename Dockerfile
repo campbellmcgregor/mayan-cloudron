@@ -2,7 +2,7 @@ FROM cloudron/base:2.0.0@sha256:f9fea80513aa7c92fe2e7bf3978b54c8ac5222f47a9a32a7
 
 EXPOSE 8000
 
-ENV MAYAN_VERSION=3.4.14
+ENV MAYAN_VERSION=3.4.17
 ENV MAYAN_DATABASE_ENGINE = django.db.backends.postgresql
 
 RUN apt update && \ 
@@ -12,7 +12,7 @@ libtiff-dev poppler-utils python3-dev python3-virtualenv \
  sane-utils supervisor tesseract-ocr zlib1g-dev python3.7 python3.7-dev -y
 
 RUN mkdir -p /app/code /app/data && \
-    ln -s /app/data/venv /app/code/venv
+    ln -s /run/app/venv /app/code/venv
 
 ADD build.sh /app/code/
 
