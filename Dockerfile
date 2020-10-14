@@ -11,7 +11,8 @@ libfuse2 libjpeg-dev libmagic1 libpq-dev libpng-dev libreoffice \
 libtiff-dev poppler-utils python3-dev python3-virtualenv \
  sane-utils supervisor tesseract-ocr zlib1g-dev python3.7 python3.7-dev -y
 
-RUN mkdir -p /app/code /app/data
+RUN mkdir -p /app/code /app/data && \
+    ln -s /app/data/venv /app/code/venv
 
 ADD build.sh /app/code/
 

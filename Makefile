@@ -18,6 +18,11 @@ build:
 update: build
 	cloudron update --app ${CLOUDRON_APP}
 
+.PHONY: redeploy
+build: build
+redeploy: uninstall
+	cloudron update --app ${CLOUDRON_APP}	
+
 .PHONY: install
 install:
 	cloudron install --location ${CLOUDRON_APP}
@@ -37,3 +42,4 @@ exec:
 .PHONY: logs
 logs:
 	cloudron logs -f --app ${CLOUDRON_APP}
+
