@@ -8,6 +8,9 @@ export ENV PATH=/usr/lib/postgresql/10/bin/:$PATH
 
 cd /app/code/
 
+pip3 install setuptools wheel
+pip3 install --upgrade virtualenv
+
 virtualenv -p /usr/bin/python3.7 venv
 source /app/code/venv/bin/activate
 

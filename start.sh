@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -eu -o pipefail
 
 export MAYAN_DATABASES="{default: {ENGINE: django.db.backends.postgresql, HOST: ${CLOUDRON_POSTGRESQL_HOST}, NAME: ${CLOUDRON_POSTGRESQL_DATABASE}, \
                           PASSWORD: ${CLOUDRON_POSTGRESQL_PASSWORD}, USER: ${CLOUDRON_POSTGRESQL_USERNAME}}}"
@@ -27,7 +27,7 @@ cd /app/code/
 
 if [[ ! -d /app/data/media/ ]]; then
 
-    echo "=> Run first time setup "
+    echo "=> Run first time setup"
     python /app/code/venv/lib/python3.7/site-packages/mayan/bin/mayan-edms.py initialsetup
 
 else
@@ -38,7 +38,7 @@ fi
 echo "=> Make cloudron own /run"
 chown -R cloudron:cloudron /run
 chown -R cloudron:cloudron /app/data
-#chown -R cloudron:cloudron /app/code 
+ 
 
 
 rm -rf /var/run/supervisor.sock
